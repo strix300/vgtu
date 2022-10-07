@@ -1,0 +1,34 @@
+#include <stdlib.h>
+#include <math.h>
+#define _USE_MATH_DEFINES 
+#define M_PI 3.14159265358979323846
+#define t 0.43
+
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	double y, b, a, x;
+	scanf("%lf", &x);
+	b = x * (pow(t, 3) + x);
+	y = pow(log10(fabs(x)),3) + b;
+	
+	printf("y=%lf b=%lf", y, b);
+
+	//float gr;
+	//scanf("%f", &gr);
+	//gr = gr * M_PI / 180;
+	//printf("ответ: %.6f", sin(gr));
+
+
+	//int x, y, Res1, Res2, Res3, Res4, Res5, Result;
+	//scanf("%d", &x);
+	//scanf("%d", &y);
+	//Res1 = 0.5 * y;
+	//Res2 = pow(x, 0.5 * y);
+	//Res3 = sin(pow(x, 0.5 * y));
+	//Res4 = y + 8e-4;
+	//Res5 = pow(y + 8e-4, 1 / 5.f);
+	//Result = sin(pow(x, 0.5 * y)) + pow(y + 8e-4, 1 / 5.f);
+	//printf("ответ: % .3f", sin(pow(x, 0.5 * y)) + pow(y + 8e-4, 1 / 5.f));
+
+}
