@@ -1,0 +1,90 @@
+#include <stdlib.h>
+#include <locale.h>
+#include <stdio.h>
+#include <math.h>
+#define _USE_MATH_DEFINES 
+#define M_PI 3.14159265358979323846
+
+void procdz()
+{
+	double x, y, z, c;
+	x = 3.251;
+	y = 0.325;
+	z = 0.466 * pow(10, -4);
+	c = pow(2, pow(y, x)) + pow(pow(3, x), y) - (y * (atan(z) - M_PI / 6)) / (fabs(x) + 1 / (pow(y, 2) + 1));
+	printf("%lf", c);
+}
+
+void proc3b()
+{
+double x, b, y, a, t;
+int A, B, C;
+t = 0.43;
+scanf("%lf", &x);
+a = (pow(exp(x), 2)) + sqrt(x);
+b = ((pow(t, 3)) + x) * x;
+y = (pow(log10(fabs(x)), 3)) + b;
+A = (int)a;
+B = (int)b;
+C = (int)y;
+if (A % 3 == 0 && B % 3 == 0 && C % 3 == 0)
+{
+	puts("1");
+	printf("%d(A) %d(B) %d(C)", A, B, C);
+}
+else
+{
+	puts("0");
+	printf("%d(A) %d(B) %d(C)", A, B, C);
+}
+}
+
+void proc3a()
+{
+	double x, b, y, a, t;
+	int A, B, C;
+	t = 0.43;
+	printf("введите x=");
+	scanf("%lf", &x);
+	a = (pow(exp(x), 2)) + sqrt(x);
+	b = ((pow(t, 3)) + x) * x;
+	y = (pow(log10(fabs(x)), 3)) + b;
+	A = (int)a;
+	B = (int)b;
+	C = (int)y;
+	printf("условие выполнено(1 - да, 0 - нет)\n");
+	if ((A % 2 == 0 && B % 2 != 0) || (A % 2 != 0 && B % 2 == 0))
+	{
+		puts("1");
+		printf("если одно из чисел четное, а другое нет тогда их сумма нечетна.\nпроверка: %d(A)+%d(B)=%d", A, B, A + B);
+	}
+	else
+	{
+		puts("0");
+	}
+}
+
+void proc2()
+{
+	double x, b, y, a, t;
+	t = 0.43;
+	scanf_s("%lf", &x);
+	a = (pow(exp(x), 2)) + sqrt(x);
+	b = ((pow(t, 3)) + x) * x;
+	y = (pow(log10(fabs(x)), 3)) + b;
+	printf("Значение функции Y при параметре X = %f равно %.4lf", x, y);
+}
+
+void proc1()
+{
+	float gr;
+	scanf("%f", &gr);
+	gr = gr * M_PI / 180;
+	printf("ответ: %.6f", sin(gr));
+}
+
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	procdz();
+}
