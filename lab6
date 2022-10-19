@@ -1,0 +1,72 @@
+#include <stdlib.h>
+#include <locale.h>
+#include <stdio.h>
+#include <math.h>
+#define _USE_MATH_DEFINES
+//_CRT_SECURE_NO_DEPRECATE//
+
+void proc1()
+{
+	int year;
+	puts("введите год");
+	scanf("%d", &year);
+	if ((year % 4 == 0 && year % 100 != 0) || (year % 400 ==0))
+	{
+		printf("%d високосный год", year);
+	}
+	else
+	{
+		printf("%d не високосный год", year);
+	}
+}
+void proc2()
+{
+	double x, f;
+	puts("введите число");
+	scanf("%lf", &x);
+	if (x <= 3)
+	{
+		f= -pow(x, 2) + 3 * x + 9;
+		printf("%lf", f);
+	}
+	else
+	{
+		f = x / (pow(x, 2) + 1);
+		printf("%lf", f);
+	}
+}
+void proc3()
+{
+	int x;
+	puts("введите трехзначное число");
+	scanf("%d", &x);
+	if (x < 1000)
+	{
+		if ((x / 100 == x % 10) && (x / 100 == (x % 100) / 10) && (x % 10 == (x % 100) / 10))
+		{
+			printf("число сотен, десятков и единиц равно\n");
+		}
+		else
+		{
+			if (x / 100 == x % 10)
+			{
+				printf("число сотен и единиц равно\n");
+			}
+			if (x / 100 == (x % 100) / 10)
+			{
+				printf("число сотен и десятков равно\n");
+			}
+			if (x % 10 == (x % 100) / 10)
+			{
+				printf("число единиц и десятков равно\n");
+			}
+		}
+	}
+}
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	proc1();
+	/*proc2();*/
+	/*proc3();*/
+}
