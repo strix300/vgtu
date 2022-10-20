@@ -1,0 +1,75 @@
+#include <stdlib.h>
+#include <locale.h>
+#include <stdio.h>
+#include <math.h>
+
+void proc1()
+{
+	char c;
+	printf("Введите символ или цифру: ");
+	scanf("%c", &c);
+	switch ((c >= '0' && c <= '9'))
+	{
+	case 1:
+		printf("Введена цифра.\n");
+		break;
+	case 0:
+		printf("Введена буква.\n");
+		break;
+	default:
+		printf("Введен буква.\n");
+	}
+}
+
+void proc2()
+{
+	double x, y,r;
+	char c;
+	scanf("%lg%c%lg", &x, &c, &y);
+	switch (c)
+	{
+	case '+':
+		printf("=%lg", x + y);
+		break;
+	case '-':
+		printf("=%lg", x - y);
+		break;
+	case '*':
+		printf("=%lg", x * y);
+		break;
+	case '/':
+		printf("=%lg", x / y);
+		break;
+	case '^':
+		printf("=%lg", pow(x,y));
+		break;
+	}
+	return 0;
+}
+
+void proc3()
+{
+	int months,years;
+	scanf("%d", &months, &years);
+	years = months / 12;
+	switch (years)
+	{
+	case 1:
+		printf("%d год %d месяцев", years, months % 12);
+		break;
+	case 2:
+	case 3:
+	case 4:
+		printf("%d года %d месяцев", years, months % 12);
+		break;
+	default:
+		printf("%d лет", years);
+	}
+	return 0;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	proc3();
+}
