@@ -23,8 +23,9 @@ void proc1()
 
 void proc2()
 {
-	double x, y,r;
+	double x, y;
 	char c;
+	printf("введите выражение:\n");
 	scanf("%lg%c%lg", &x, &c, &y);
 	switch (c)
 	{
@@ -50,7 +51,8 @@ void proc2()
 void proc3()
 {
 	int months,years;
-	scanf("%d", &months, &years);
+	printf("введите возраст в месяцах:");
+	scanf("%d", &months);
 	years = months / 12;
 	switch (years)
 	{
@@ -71,5 +73,5 @@ void proc3()
 int main()
 {
 	setlocale(LC_ALL, "RUS");
-	proc3();
+	proc2();
 }
