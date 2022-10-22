@@ -1,0 +1,58 @@
+#include <stdlib.h>
+#include <locale.h>
+#include <stdio.h>
+#include <math.h>
+
+void proc0()
+{ 
+	int l;
+	scanf("%d", &l);
+	for (int start1 = 1; start1 <= (l/2); start1++)
+	{
+		printf("*");
+		printf("!");
+	}
+	for (int start2 = 1; start2 <= (l/2); start2++)
+	{
+		printf("^");
+		printf("!");
+	}
+}
+void proc1()
+{
+	int n, m, s;
+	scanf("%d%d", &n,&m);
+	for (int i = m, s = 0; i >= n; i--)
+	{
+		s += i;
+		printf("выполнено %d раз\n", i + 1);
+		printf("результат %d\n", s);
+	}
+}
+void proc2()
+{
+	double x, y, f;
+	scanf("%lg", &f);
+	printf("______________\n");
+	for (x = 2; (2 <= x) && (x <= 4.2); x += f)
+	{
+		y = fabs(log10(x)) - pow((x - 2), 2);
+		printf("| %f | %f |\n", x, y);
+	}
+}
+void proc3()
+{
+	double r = 1, n, x, f = 0;
+	scanf("%lg", &x);
+	for (n = 1; n <= x; n++)
+	{
+		f += 2;
+		r = r * (1 - (1 / f));
+		printf("%f\n", r);
+	}
+}
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	proc0();
+}
