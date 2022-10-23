@@ -22,14 +22,20 @@ void proc1a()
 }
 void proc1b()
 {
-	int row1, col1;
-	printf("\n");
-	for (row1 = 30; row1 > ROW1 && row1 > 25; row1--)
+	int n, m = 1, count = 0;
+	for (n = 30; n >= 26; n++)
 	{
-		for (col1 = 31; col1 > COL1 + row1; col1--)
-			printf("%5d", col1-1);	
+		count++;
+		printf("%5d", n);
+		if (count == m)
+		{
 			printf("\n");
+			n =n-(m + 1);
+			m++;
+			count = 0;
+		}
 	}
+	return 0;
 }
 int main()
 {
