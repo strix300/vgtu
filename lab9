@@ -1,0 +1,38 @@
+#include <stdlib.h>
+#include <locale.h>
+#include <stdio.h>
+#include <math.h>
+#define _USE_MATH_DEFINES
+#define ROW 0
+#define COL 0
+#define ROW1 0
+#define COL1 0
+#define COL2 30
+void proc1a()
+{
+	int row, col;
+	printf("\n");
+	for (row = 8; row > ROW; --row)
+	{
+		for (col = 9; col > COL + row; --col)
+		printf("%5d", col * row);
+		printf("\n");
+	}
+	system("pause");
+}
+void proc1b()
+{
+	int row1, col1;
+	printf("\n");
+	for (row1 = 30; row1 > ROW1 && row1 > 25; row1--)
+	{
+		for (col1 = 31; col1 > COL1 + row1; col1--)
+			printf("%5d", col1-1);	
+			printf("\n");
+	}
+}
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	proc1b();
+}
