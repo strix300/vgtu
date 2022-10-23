@@ -5,9 +5,7 @@
 #define _USE_MATH_DEFINES
 #define ROW 0
 #define COL 0
-#define ROW1 0
-#define COL1 0
-#define COL2 30
+//_CRT_SECURE_NO_DEPRECATE//
 void proc1a()
 {
 	int row, col;
@@ -15,7 +13,7 @@ void proc1a()
 	for (row = 8; row > ROW; --row)
 	{
 		for (col = 9; col > COL + row; --col)
-		printf("%5d", col * row);
+			printf("%5d", col * row);
 		printf("\n");
 	}
 	system("pause");
@@ -23,6 +21,7 @@ void proc1a()
 void proc1b()
 {
 	int n, m = 1, count = 0;
+	printf("\n");
 	for (n = 30; n >= 26; n++)
 	{
 		count++;
@@ -30,7 +29,7 @@ void proc1b()
 		if (count == m)
 		{
 			printf("\n");
-			n =n-(m + 1);
+			n = n - (m + 1);
 			m++;
 			count = 0;
 		}
@@ -40,5 +39,5 @@ void proc1b()
 int main()
 {
 	setlocale(LC_ALL, "RUS");
-	proc1b();
+	proc1a();
 }
