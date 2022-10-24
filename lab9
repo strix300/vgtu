@@ -36,6 +36,26 @@ void proc1b()
 	}
 	return 0;
 }
+void proc2()
+{
+	int v, x,x1=0,x2=0,i,i1;
+	printf("введите число:");
+	scanf("%d", &v);
+	i1 = 1;
+	for (i = 0; i < i1; i++)
+	{
+		i1++;
+		x = v % 10;
+		v /= 10;
+		if (x % 2 == 0)
+			x1 += x;
+		else
+			x2 += x;
+		if (v == 0)
+			break;
+	}
+	printf("%d", x1 * x2);
+}
 int main()
 {
 	setlocale(LC_ALL, "RUS");
