@@ -1,0 +1,26 @@
+#include <stdlib.h>
+#include <locale.h>
+#include <stdio.h>
+#include <math.h>
+
+void proc1()
+{
+	double x, y1, y2,res;
+	scanf("%lg", &x);
+	if (x > 3)
+	{
+		y1 = 1 / (pow(x, 3) + 3);
+	}
+	else
+	{
+		y1 = pow(x, 2) - 3 * x + 9;
+	}
+	y2 = x * exp(sin(pow(x, 2)));
+	res = (pow(y1, 2) - pow(y2, 2)) * (2 * (y1 + y2));
+	printf("%lf %lf %lf", y1, y2, res);
+}
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	proc1();
+}
