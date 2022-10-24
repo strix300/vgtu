@@ -38,7 +38,7 @@ void proc1b()
 }
 void proc2()
 {
-	int v, x,x1=0,x2=0,i,i1;
+	int v, x, x1 = 0, x2 = 0, i, i1;
 	printf("введите число:");
 	scanf("%d", &v);
 	i1 = 1;
@@ -56,8 +56,47 @@ void proc2()
 	}
 	printf("%d", x1 * x2);
 }
+void proc3()
+{
+	int a, h, i, k = 0, x = 1, d, j;
+	char s;
+	printf("введите символ:");
+	scanf("%c", &s);
+	printf("введите высоту:");
+	scanf("%d", &h);
+	printf("введите длинну:");
+	scanf("%d", &a);
+	printf("\t");
+	d = a * 2;
+	for (i = 0; i <= a; i++)
+	{
+		if (i == a)
+		{
+			printf("\n");
+			printf("\t");
+			a += 2;
+			i = 0;
+			k++;
+			x++;
+			d -= 2;
+		}
+		if (x == 1)
+		{
+			for (j = 0; j <= d / 2; j++)
+			{
+				printf(" ");
+			}
+			x = 0;
+		}
+		if (k == h)
+		{
+			break;
+		}
+		printf("%c", s);
+	}
+}
 int main()
 {
 	setlocale(LC_ALL, "RUS");
-	proc1a();
+	proc1b();
 }
