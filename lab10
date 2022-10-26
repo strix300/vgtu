@@ -5,7 +5,7 @@
 
 void proc1()
 {
-	double x, y1, y2,res;
+	double x, y1, y2, res;
 	scanf("%lg", &x);
 	if (x > 3)
 	{
@@ -19,8 +19,62 @@ void proc1()
 	res = (pow(y1, 2) - pow(y2, 2)) * (2 * (y1 + y2));
 	printf("%lf %lf %lf", y1, y2, res);
 }
+void proc3()
+{
+	int i, k = 0, x = 1, d, j,f;
+	double S, a, h;
+	char s;
+	printf("введите символ:");
+	scanf("%c", &s);
+	printf("введите высоту:");
+	scanf("%lg", &h);
+	printf("введите длинну:");
+	scanf("%lg", &a);
+	printf("1 - Рассчитать площадь, 2 - вывести определение фигуры, 3 - нарисовать фигуру:");
+	scanf("%d", &f);
+	d = a * 2;
+	if (f == 1)
+	{
+		S = (a + 2*a) / 2 * 4;
+		printf("площадь равна %lg", S);
+	}
+	if (f == 2)
+	{
+		puts("равнобедренная трапеция — это выпуклый четырёхугольник с осью симметрии, проходящей через середины двух противоположных сторон.");
+	}
+	if (f == 3)
+	{
+		printf("\t");
+		for (i = 0; i <= a; i++)
+		{
+			if (i == a)
+			{
+				printf("\n");
+				printf("\t");
+				a += 2;
+				i = 0;
+				k++;
+				x++;
+				d -= 2;
+			}
+			if (x == 1)
+			{
+				for (j = 0; j <= d / 2; j++)
+				{
+					printf(" ");
+				}
+				x = 0;
+			}
+			if (k == h)
+			{
+				break;
+			}
+			printf("%c", s);
+		}
+	}
+}
 int main()
 {
 	setlocale(LC_ALL, "RUS");
-	proc1();
+	proc3();
 }
