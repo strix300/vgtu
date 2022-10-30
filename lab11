@@ -1,0 +1,79 @@
+#include <stdlib.h>
+#include <locale.h>
+#include <stdio.h>
+#include <math.h>
+#define _USE_MATH_DEFINES
+#define N 10
+//_CRT_SECURE_NO_DEPRECATE//
+
+void proc1()
+{
+	float A[N], temp, f[N], s = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		printf("a[%d] = ", i + 1);
+		scanf("%f", &temp);
+		f[i] = temp;
+		if (temp == 0)
+		{
+			temp = i + 1;
+		}
+		A[i] = temp;
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		printf("| %d | %f | %f\n", i, f[i], A[i]);
+		s += A[i];
+	}
+	printf("среднее арифметическое %f", s/N);
+}
+void proc2()
+{
+	double x, y[100], f, n = 0, p=0, o=0, p1=0, o1=0,sr=0;
+	scanf("%lg", &f);
+	printf("______________\n");
+	int i = 0;
+	for (x = 2; (2 <= x) && (x <= 4.2); x += f)
+	{
+		n++;
+		y[i] = fabs(log10(x)) - pow((x - 2), 2);
+		printf("| %f | %f |\n", x, y[i]);
+		sr += y[i];
+		if (y[i] > 0)
+		{
+			p += y[i];
+			p1++;
+		}
+		else
+		{
+			o += y[i];
+			o1++;
+		}
+		i++;
+		if (n == 100)
+		{
+			break;
+		}
+	}
+	printf("массив y\n");
+	printf("положительные %lg, отрицательные %lg\n",p,o);
+	printf("к-во положительных %lg, отрицательных %lg\n", p1, o1);
+	printf("среднее значение %lg\n", sr/100);
+}
+void proc3()
+{
+	int n,i,h;
+	scanf("%d", &n);
+	int A[N];
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &h);
+		A[i] = h;
+	}
+	printf("%d", A[2]);
+}
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	proc3();
+}
