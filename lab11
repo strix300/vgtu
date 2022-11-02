@@ -25,11 +25,11 @@ void proc1()
 		printf("| %d | %f | %f\n", i, f[i], A[i]);
 		s += A[i];
 	}
-	printf("среднее арифметическое %f", s/N);
+	printf("среднее арифметическое %f", s / N);
 }
 void proc2()
 {
-	double x, y[100], f, n = 0, p=0, o=0, p1=0, o1=0,sr=0;
+	double x, y[100], f, n = 0, p = 0, o = 0, p1 = 0, o1 = 0, sr = 0;
 	scanf("%lg", &f);
 	printf("______________\n");
 	int i = 0;
@@ -56,21 +56,34 @@ void proc2()
 		}
 	}
 	printf("массив y\n");
-	printf("положительные %lg, отрицательные %lg\n",p,o);
+	printf("положительные %lg, отрицательные %lg\n", p, o);
 	printf("к-во положительных %lg, отрицательных %lg\n", p1, o1);
-	printf("среднее значение %lg\n", sr/100);
+	printf("среднее значение %lg\n", sr / 100);
 }
 void proc3()
 {
-	int n,i,h;
-	scanf("%d", &n);
-	int A[N];
+	int i, h, s = 0, c,k = 0;
+	double sr,n;
+	int A[999];
+	printf("введите размер массива ");
+	scanf("%lg", &n);
 	for (i = 0; i < n; i++)
 	{
+		printf("A[%d] = ",i+1);
 		scanf("%d", &h);
 		A[i] = h;
+		s += h;
 	}
-	printf("%d", A[2]);
+	sr = s / n;
+	printf("среднее арифметическое равно %lg\n", sr);
+	for (c = 0; c < n; c++)
+	{
+		if (A[c] < sr)
+		{
+		k++;
+		}
+	}
+	printf("Количество элементов массива значение которых меньше среднего арифметического всех элементов массива %d", k);
 }
 int main()
 {
