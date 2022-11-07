@@ -75,9 +75,22 @@ void proc4()
 		ptr_a -= 2;
 	}
 }
-
+void proc5()
+{
+	int x = 0x12345678;
+	int *prt;
+	unsigned char *a1, *a2, *a3, *a4;
+	unsigned char *a;
+	prt = &x;
+	a = (unsigned char*) prt;
+	a1 = a;
+	a2 = a + 1;
+	a3 = a + 2;
+	a4 = a + 3;
+	printf(" %.2x\n %.2x\n %.2x\n %.2x \n", *a1, *a2, *a3, *a4);
+}
 int main()
 {
 	setlocale(LC_ALL, "RUS");
-	proc4();
+	proc5();
 }
