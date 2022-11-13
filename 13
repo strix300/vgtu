@@ -8,13 +8,18 @@
 
 void proc1()
 {
-	char Name[20], Snew[] = "Hello", h[20];
+	int i1=0;
+	char Name[40], Snew[40] = "Hello";
 	scanf("%s", Name);
-	for (int i = 0; i < 20; i++)
+	strcat(Snew, Name);
+	while (Snew[i1] != 0) i1++;
+	printf("%d\n", i1);
+	printf("%s\n", Snew);
+	for (i1; i1 < 40; i1++)
 	{
-		h[i] = '!';
+		Snew[i1] = '!';
 	}
-	printf("%s %s%s", Snew, Name,h);
+	printf("%s\n", Snew);
 }
 int main()
 {
