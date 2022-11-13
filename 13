@@ -8,7 +8,7 @@
 
 void proc1()
 {
-	int i1=0;
+	int i1 = 0;
 	char Name[40], Snew[40] = "Hello";
 	scanf("%s", Name);
 	strcat(Snew, Name);
@@ -21,8 +21,19 @@ void proc1()
 	}
 	printf("%s\n", Snew);
 }
+void proc2()
+{
+	int i1 = 0;
+	char Name[40], Snew[40] = "Hello", m;
+	scanf("%s", Name);
+	m = Name[0];
+	Name[0] = Name[1];
+	Name[1] = m;;
+	strcat(Snew, Name);
+	printf("%s\n", Snew);
+}
 int main()
 {
 	setlocale(LC_ALL, "RUS");
-	proc1();
+	proc2();
 }
