@@ -1,0 +1,55 @@
+#define _CRT_SECURE_NO_DEPRECATE
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#define w 20
+#define h 4
+
+void proc1()
+{
+	float T[w][h], b = 1;
+	int i, k;
+	char c;
+	for (i = 0; i < w; i++)
+	{
+		for (k = 0; k < h; k++)
+		{
+			T[i][k] = b;
+			b++;
+		}
+	}
+	printf("введите 1 для вывода вида спорта\nвведите 2\nвведите 3 для вывода таблицы\n");
+	scanf("%c", &c);
+	switch (c)
+	{
+	case '1':
+		printf("Спортивное ориентирование");
+		break;
+	case '2':
+		printf("...");
+		break;
+	case '3':
+		printf("номер   минуты   секунды  место\n");
+		for (i = 0; i <= w; i++)
+		{
+			printf("%d", i);
+			for (k = 0; k <= h; k++)
+			{
+				printf("     %5.1f", T[i][k]);
+			}
+			printf("\n");
+		}
+		break;
+	case '4':
+		break;
+	}
+}
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	proc1();
+}
