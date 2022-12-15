@@ -6,23 +6,30 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
-#define w 20
-#define h 4
+#define SIZE 20
 
 void proc1()
 {
-	float T[w][h], b = 1;
-	int i, k;
+	FILE* file = fopen("tablica.txt", "r");
+	float table[20][4];
+	int i,count=100,k=0;
 	char c;
-	for (i = 0; i < w; i++)
+	char name[20];
+	count = count / 5;
+	for (int i = 0; i < count; i++)
 	{
-		for (k = 0; k < h; k++)
-		{
-			T[i][k] = b;
-			b++;
-		}
+			fgets(name, SIZE, file);
+			printf("%s", name);
+			fscanf(file, "%f\n", &table[i][k]);
+			printf("%f\n", table[i][k]);
+			fscanf(file, "%f\n", &table[i][k+1]);
+			printf("%f\n", table[i][k+1]);
+			fscanf(file, "%f\n", &table[i][k+2]);
+			printf("%f\n", table[i][k+2]);
+			fscanf(file, "%f\n", &table[i][k+3]);
+			printf("%f\n", table[i][k+3]);
 	}
-	printf("введите 1 для вывода вида спорта\nвведите 2\nвведите 3 для вывода таблицы\n");
+	printf("введите 1 для вывода вида спорта\nвведите 2 для выводав результатов указнанного участника\nвведите 3 для вывода таблицы\n");
 	scanf("%c", &c);
 	switch (c)
 	{
@@ -33,13 +40,13 @@ void proc1()
 		printf("...");
 		break;
 	case '3':
-		printf("номер   минуты   секунды  место\n");
-		for (i = 0; i <= w; i++)
+		printf("Фамилия   1 этап    2 этап    3 этап    4 этап    общее время   место\n");
+		for (i = 0; i < 20; i++)
 		{
 			printf("%d", i);
-			for (k = 0; k <= h; k++)
+			for (k = 0; k < 4; k++)
 			{
-				printf("     %5.1f", T[i][k]);
+				printf("     %5.1f", table[i][k]);
 			}
 			printf("\n");
 		}
