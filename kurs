@@ -4,59 +4,87 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <stdio.h>
-#include <math.h>
 #include <string.h>
 #define SIZE 20
-
-void proc1()
+struct nname
 {
+	char name2[20],bestn[20];
+};
+void proc1(struct nname n[20],float table[20][4],float time[20]);
+void proc2(struct nname n[20], float table[20][4], float time[20]);
+int main()
+{
+	setlocale(LC_ALL, "RUS");
 	FILE* file = fopen("tablica.txt", "r");
-	float table[20][4];
-	int i,count=100,k=0;
-	char c;
+	float table[20][4], time[20];
+	int count = 100, k = 0, i1 = 0;
+	char c,bbb[20];
 	char name[20];
 	count = count / 5;
+	struct nname n[20];
 	for (int i = 0; i < count; i++)
 	{
-			fgets(name, SIZE, file);
-			printf("%s", name);
-			fscanf(file, "%f\n", &table[i][k]);
-			printf("%f\n", table[i][k]);
-			fscanf(file, "%f\n", &table[i][k+1]);
-			printf("%f\n", table[i][k+1]);
-			fscanf(file, "%f\n", &table[i][k+2]);
-			printf("%f\n", table[i][k+2]);
-			fscanf(file, "%f\n", &table[i][k+3]);
-			printf("%f\n", table[i][k+3]);
+		fscanf(file, "%s\n", name);
+		printf("%s\n", name);
+		strcpy(n[i].name2, name);
+		fscanf(file, "%f\n", &table[i][k]);
+		printf("%5.1f\n", table[i][k]);
+		fscanf(file, "%f\n", &table[i][k+1]);
+		printf("%5.1f\n", table[i][k+1]);
+		fscanf(file, "%f\n", &table[i][k+2]);
+		printf("%5.1f\n", table[i][k+2]);
+		fscanf(file, "%f\n", &table[i][k+3]);
+		printf("%5.1f\n", table[i][k+3]);
+		time[i] = table[i][0] + table[i][1] + table[i][2] + table[i][3];
 	}
-	printf("введите 1 для вывода вида спорта\nвведите 2 для выводав результатов указнанного участника\nвведите 3 для вывода таблицы\n");
+	printf("введите 1 Напечатать в исходную таблицу\nвведите 2 для поиска наилучшего вермени на этапе\nвведите 3 для вывода таблицы \n");
 	scanf("%c", &c);
 	switch (c)
 	{
 	case '1':
-		printf("Спортивное ориентирование");
+		proc1(n ,table,time);
 		break;
 	case '2':
-		printf("...");
+		proc2(n, table, time);
 		break;
 	case '3':
-		printf("Фамилия   1 этап    2 этап    3 этап    4 этап    общее время   место\n");
-		for (i = 0; i < 20; i++)
-		{
-			printf("%d", i);
-			for (k = 0; k < 4; k++)
-			{
-				printf("     %5.1f", table[i][k]);
-			}
-			printf("\n");
-		}
 		break;
 	case '4':
 		break;
 	}
 }
-int main()
+void proc1(struct nname n[20],float table[20][4],float time[20])
 {
-	setlocale(LC_ALL, "RUS");
-	proc1();
+	printf("Имя\t\t1 этап\t2 этап\t3 этап\t4 этап\tобщее время\tместо\n");
+	for (int i = 0; i < 20; i++)
+	{
+		printf("%s    ", n[i].name2);
+		for (int k = 0; k < 4; k++)
+		{
+			printf("\t%5.1f  ", table[i][k]);
+		}
+		printf("\t%5.1f\n", time[i]);
+	}
+}
+void proc2(struct nname n[20], float table[20][4], float time[20])
+{
+	float best = 0;
+	int etap;
+	etap;
+	puts("введите этап");
+	scanf("%d", &etap);
+	etap--;
+	for (int i = 0; i < 20; i++)
+	{
+		if (best < table[i][etap])
+			{
+			best = table[i][etap];
+			strcpy(n[0].bestn, n[i].name2);
+			}
+		else
+		{
+			best=best;
+		}
+	}
+	printf("лучший результат на %d этапе %s %5.1f с", etap+1, n[0].bestn, best);
 }
