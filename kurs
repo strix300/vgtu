@@ -12,13 +12,14 @@ struct nname
 };
 void proc1(struct nname n[20],float table[20][4],float time[20]);
 void proc2(struct nname n[20], float table[20][4], float time[20]);
+void proc3(struct nname n[20], float table[20][4], float time[20]);
 int main()
 {
 	setlocale(LC_ALL, "RUS");
 	FILE* file = fopen("tablica.txt", "r");
 	float table[20][4], time[20];
-	int count = 100, k = 0, i1 = 0;
-	char c,bbb[20];
+	int count = 100, k = 0;
+	char c;
 	char name[20];
 	count = count / 5;
 	struct nname n[20];
@@ -37,7 +38,7 @@ int main()
 		printf("%5.1f\n", table[i][k+3]);
 		time[i] = table[i][0] + table[i][1] + table[i][2] + table[i][3];
 	}
-	printf("введите 1 Напечатать в исходную таблицу\nвведите 2 для поиска наилучшего вермени на этапе\nвведите 3 для вывода таблицы \n");
+	printf("введите 1 Напечатать в исходную таблицу\nвведите 2 для поиска наилучшего вермени на этапе\nвведите 3 для вывода результатов участника \n");
 	scanf("%c", &c);
 	switch (c)
 	{
@@ -48,6 +49,7 @@ int main()
 		proc2(n, table, time);
 		break;
 	case '3':
+		proc3(n, table, time);
 		break;
 	case '4':
 		break;
@@ -55,36 +57,68 @@ int main()
 }
 void proc1(struct nname n[20],float table[20][4],float time[20])
 {
-	printf("Имя\t\t1 этап\t2 этап\t3 этап\t4 этап\tобщее время\tместо\n");
+	printf("______________________________________________________________________________________________\n");
+	printf("|Имя\t\t|      1 этап\t|      2 этап\t|      3 этап\t|      4 этап\t|общее время |\n");
 	for (int i = 0; i < 20; i++)
 	{
-		printf("%s    ", n[i].name2);
+		printf("|%s    \t|", n[i].name2);
 		for (int k = 0; k < 4; k++)
 		{
-			printf("\t%5.1f  ", table[i][k]);
+			printf("\t%5.1f   |", table[i][k]);
 		}
-		printf("\t%5.1f\n", time[i]);
+			printf("\t%5.1f|\n", time[i]);
 	}
+	printf("|____________________________________________________________________________________________|");
 }
+
 void proc2(struct nname n[20], float table[20][4], float time[20])
 {
-	float best = 0;
-	int etap;
-	etap;
-	puts("введите этап");
-	scanf("%d", &etap);
-	etap--;
-	for (int i = 0; i < 20; i++)
+	float best = 0,worst=999999;
+	int etap,d;
+	printf("1-лучший результат 2-худший результат\n");
+	scanf("%d", &d);
+	if (d == 1)
 	{
-		if (best < table[i][etap])
-			{
-			best = table[i][etap];
-			strcpy(n[0].bestn, n[i].name2);
-			}
-		else
+		puts("введите этап");
+		scanf("%d", &etap);
+		etap--;
+		for (int i = 0; i < 20; i++)
 		{
-			best=best;
-		}
+			if (best < table[i][etap])
+			{
+				best = table[i][etap];
+				strcpy(n[0].bestn, n[i].name2);
+			}
+			else
+			{
+				best = best;
+			}
+		}		
+		printf("|лучший результат на %d этапе| %s | %5.1f с|", etap + 1, n[0].bestn, best);
 	}
-	printf("лучший результат на %d этапе %s %5.1f с", etap+1, n[0].bestn, best);
+	if (d==2)
+	{
+		puts("введите этап");
+		scanf("%d", &etap);
+		etap--;
+		for (int i = 0; i < 20; i++)
+		{
+			if (worst > table[i][etap])
+			{
+				worst = table[i][etap];
+				strcpy(n[0].bestn, n[i].name2);
+			}
+			else
+			{
+				worst = worst;
+			}
+		}
+		printf("|лучший результат на %d этапе| %s | %5.1f с|", etap + 1, n[0].bestn, worst);
+	}
+}
+
+void proc3(struct nname n[20], float table[20][4], float time[20])
+{
+	scanf("%s", &n[1].bestn);
+	printf("%s", n[1].bestn);
 }
