@@ -200,7 +200,7 @@ void proc4(struct nname n[20], float table[20][4], float time[20])
 		{
 			printf("\t%5.1f c  |", table2[i][k]);
 		}
-		printf("\t%5.1f c|", time2[i]);
+		printf("\t%f c|", time2[i]);
 		printf("\t%d |\n", mesto[i]);
 	}
 	printf("|______________________________________________________________________________________________|");
