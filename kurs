@@ -11,10 +11,10 @@
 
 struct nname
 {
-	char name2[20], bestn[20] ,topn[20], topetap[20];
+	char name2[20], bestn[20], topn[20], topetap[20];
 };
 
-void proc1(struct nname n[20],float table[h][w],float time[20]);
+void proc1(struct nname n[20], float table[h][w], float time[20]);
 void proc2(struct nname n[20], float table[h][w], float time[20]);
 void proc3(struct nname n[20], float table[h][w], float time[20]);
 void proc4(struct nname n[20], float table[h][w], float time[20]);
@@ -29,7 +29,7 @@ int main()
 	FILE* file = fopen("tablica.txt", "r");
 	int heught = 20; int weight = 4;
 	float table[h][w], time[20];
-	int count=0, k = 0, c = 1;
+	int count = 0, k = 0, c = 1;
 	char name[20];
 	while (!feof(file))
 	{
@@ -47,12 +47,12 @@ int main()
 		strcpy(n[i].name2, name);
 		fscanf(file, "%f\n", &table[i][k]);
 		printf("%5.1f\n", table[i][k]);
-		fscanf(file, "%f\n", &table[i][k+1]);
-		printf("%5.1f\n", table[i][k+1]);
-		fscanf(file, "%f\n", &table[i][k+2]);
-		printf("%5.1f\n", table[i][k+2]);
-		fscanf(file, "%f\n", &table[i][k+3]);
-		printf("%5.1f\n", table[i][k+3]);
+		fscanf(file, "%f\n", &table[i][k + 1]);
+		printf("%5.1f\n", table[i][k + 1]);
+		fscanf(file, "%f\n", &table[i][k + 2]);
+		printf("%5.1f\n", table[i][k + 2]);
+		fscanf(file, "%f\n", &table[i][k + 3]);
+		printf("%5.1f\n", table[i][k + 3]);
 		time[i] = table[i][0] + table[i][1] + table[i][2] + table[i][3];
 	}
 	while (c > 0)
@@ -87,7 +87,7 @@ int main()
 	}
 }
 
-void proc1(struct nname n[20],float table[h][w],float time[20])
+void proc1(struct nname n[20], float table[h][w], float time[20])
 {
 	system("cls");
 	printf("________________________________________________________________________________________________\n");
@@ -99,7 +99,7 @@ void proc1(struct nname n[20],float table[h][w],float time[20])
 		{
 			printf("\t%5.1f c  |", table[i][k]);
 		}
-			printf("\t%5.1f c|\n", time[i]);
+		printf("\t%5.1f c|\n", time[i]);
 	}
 	printf("|______________________________________________________________________________________________|\n");
 	system("pause");
@@ -108,8 +108,8 @@ void proc1(struct nname n[20],float table[h][w],float time[20])
 void proc2(struct nname n[20], float table[h][w], float time[20])
 {
 	system("cls");
-	float best = 0,worst=999999;
-	int etap,d;
+	float best = 0, worst = 999999;
+	int etap, d;
 	printf("1-лучший результат 2-худший результат\n");
 	scanf("%d", &d);
 	if (d == 2)
@@ -128,10 +128,10 @@ void proc2(struct nname n[20], float table[h][w], float time[20])
 			{
 				best = best;
 			}
-		}		
+		}
 		printf("|худший результат на %d этапе| %s | %5.1f с|\n", etap + 1, n[0].bestn, best);
 	}
-	if (d==1)
+	if (d == 1)
 	{
 		puts("введите этап");
 		scanf("%d", &etap);
@@ -161,7 +161,7 @@ void proc3(struct nname n[20], float table[h][w], float time[20])
 	scanf("%s", &namesearch);
 	for (int i = 0; i < 20; i++)
 	{
-		if (strcmp(namesearch,n[i].name2)==0)
+		if (strcmp(namesearch, n[i].name2) == 0)
 		{
 			printf("%s %5.1f %5.1f %5.1f %5.1f %5.1f\n", n[i].name2, table[i][0], table[i][1], table[i][2], table[i][3], time[i]);
 		}
@@ -172,7 +172,7 @@ void proc3(struct nname n[20], float table[h][w], float time[20])
 void proc4(struct nname n[20], float table[h][w], float time[20])
 {
 	system("cls");
-	float time2[20],table2[h][w], q;
+	float time2[20], table2[h][w], q;
 	int mesto[20];
 	memcpy(time2, time, sizeof(time2));
 	for (int i = 0; i < 20 - 1; i++)
@@ -205,10 +205,10 @@ void proc4(struct nname n[20], float table[h][w], float time[20])
 	{
 		for (int k = 0; k < 20; k++)
 		{
-			if (time2[k]==time2[i])
+			if (abs(time2[k] - time2[i]) < 0.01)
 			{
 				mesto[i] = i + 1;
-				mesto[k] = i + 1;
+				mesto[k] = mesto[i];
 			}
 			else
 			{
@@ -216,8 +216,8 @@ void proc4(struct nname n[20], float table[h][w], float time[20])
 			}
 		}
 	}
-	printf("________________________________________________________________________________________________\n");
-	printf("|Имя\t\t|       1 этап\t |       2 этап\t |       3 этап\t |       4 этап\t |общее время  |\n");
+	printf("____________________________________________________________________________________________________________\n");
+	printf("|Имя\t\t|       1 этап\t |       2 этап\t |       3 этап\t |       4 этап\t |общее время  |  место\t   |\n");
 	for (int i = 0; i < 20; i++)
 	{
 		printf("|%s    \t|", n[i].topn);
@@ -226,9 +226,9 @@ void proc4(struct nname n[20], float table[h][w], float time[20])
 			printf("\t%5.1f c  |", table2[i][k]);
 		}
 		printf("\t%5.1f c|", time2[i]);
-		printf("\t%d |\n", mesto[i]);
+		printf("\t%2d |\n", mesto[i]);
 	}
-	printf("|______________________________________________________________________________________________|\n");
+	printf("|__________________________________________________________________________________________________________|\n");
 	system("pause");
 }
 
@@ -268,7 +268,7 @@ void proc5(struct nname n[20], float table[h][w], float time[20])
 	{
 		for (int k = 0; k < 20; k++)
 		{
-			if (table2[k][etap] == table2[i][etap])
+			if (abs((table2[k][etap] - table2[i][etap])) < 0.01) 
 			{
 				mesto[i] = i + 1;
 				mesto[k] = i + 1;
@@ -279,7 +279,7 @@ void proc5(struct nname n[20], float table[h][w], float time[20])
 			}
 		}
 	}
-	printf("|Имя\t\t|       %d этап\t|      место  |\n",etap+1);
+	printf("|Имя\t\t|       %d этап\t|      место  |\n", etap + 1);
 	for (int i = 0; i < 20; i++)
 	{
 		printf("|%s    \t|", n[i].topetap);
@@ -292,12 +292,12 @@ void proc5(struct nname n[20], float table[h][w], float time[20])
 void proc6(struct nname n[20], float table[h][w], float time[20])
 {
 	system("cls");
-	float time2[20], totaltime=0, averagetime=0, totalmax=0, totalmin=999999999;
+	float time2[20], totaltime = 0, averagetime = 0, totalmax = 0, totalmin = 999999999;
 	for (int i = 0; i < 20; i++)
 	{
 		totaltime += time[i];
 	}
-	averagetime = totaltime/20;
+	averagetime = totaltime / 20;
 	for (int i = 0; i < 20; i++)
 	{
 		if (totalmin > time[i])
