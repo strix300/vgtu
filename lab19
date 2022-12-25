@@ -1,0 +1,184 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+
+#define SIZE 25
+#define XMAX 200
+#define XMIN -200
+
+int zd1();
+int zd2_append(int size);
+int zd2_write(int size);
+double average();
+int tranform(char* name);
+
+int main()
+{
+	system("chcp 1251");
+	system("cls");
+	
+	char name_file[SIZE];
+	int menu, mm = 1, size;
+
+	while (mm == 1)
+	{
+		printf("Выберите действие:\n1 - Дополнить файл\n2 - создать новый файл\n3 - Посчитать среднее арифметическое\n4 - Преобразование чисел\n5 - Выход из программы\n");
+		scanf("%d", &menu);
+		switch (menu)
+		{
+		case 1:
+			printf("Введите количество чисел: ");
+			getchar();
+			scanf("%d", &size);
+			zd2_append(size);
+			break;
+		case 2:
+			printf("Введите количество чисел: ");
+			scanf("%d", &size);
+			zd2_write(size);
+			break;
+		case 3:
+			printf("Среднее арифметическое всех чисел в файле: %.3lf\n", average());
+			break;
+		case 4:
+			printf("Введите название файла\n");
+			scanf("%s", name_file);
+			tranform(name_file);
+			break;
+		case 5:
+			mm = 0;
+			break;
+		default:
+			printf("Введено неверное значение выбора.");
+			break;
+		}
+	}
+	return 1;
+}
+
+int zd1()
+{
+	char fname[20] = "number.txt";
+	FILE* out;
+	puts("Создание файла");
+	if ((out = fopen(fname, "a")) == NULL)
+	{
+		printf("Ошибка открытия файла");
+		return 0;
+	}
+	fprintf(out, "%f\n", 12.56);
+	fclose(out);
+	return 1;
+}
+
+int zd2_append(int size)
+{
+	double rand1;
+	srand(time(NULL));
+	char name_func[20] = "temp.txt";
+	FILE* temp;
+	puts("Заполнение файла");
+	if ((temp = fopen(name_func, "a")) == NULL)
+	{
+		printf("Ошибка открытия файла");
+	}
+	else
+	{
+		for (int i = 0; i < size; i++)
+		{
+			rand1 = XMIN + 1.f * (XMAX - XMIN) * rand() / RAND_MAX;
+			fprintf(temp, "%.2lf\n", rand1);
+		}
+	}
+	fclose(temp);
+	return 1;
+}
+
+int zd2_write(int size)
+{
+	double rand1;
+	srand(time(NULL));
+	char name_func[20] = "temp.txt";
+	FILE* temp = fopen(name_func, "w");
+	puts("Создание файла");
+	if ((temp = fopen(name_func, "w")) == NULL)
+	{
+		printf("Ошибка открытия файла");
+	}
+	else
+	{
+		for (int i = 0; i < size; i++)
+		{
+			rand1 = XMIN + 1.f * (XMAX - XMIN) * rand() / RAND_MAX;
+			fprintf(temp, "%.2lf\n", rand1);
+		}
+
+	}
+	fclose(temp);
+	return 1;
+}
+
+double average()
+{
+
+	double average = 0, count = 0, read;
+	char name_func[20] = "temp.txt";
+	FILE* temp;
+	temp = fopen(name_func, "r");
+	if ((temp = fopen(name_func, "r")) == NULL)
+	{
+		printf("Ошибка открытия файла");
+	}
+	else
+	{
+		while (!feof(temp))
+		{
+			fscanf(temp, "%lf", &read);
+			average += read;
+			count += 1;
+		}
+		fclose(temp);
+		average = average / count;
+	}
+	fclose(temp);
+	return average;
+}
+
+int tranform(char* name)
+{
+	double read, read_mm;
+	int count = 1, i;
+	int* arr;
+	FILE* transform;
+	transform = fopen(name, "r");
+	if ((transform = fopen(name, "r")) == NULL)
+	{
+		printf("Ошибка открытия файла");
+	}
+	FILE* new_file;
+	new_file = fopen("decrease.txt", "w");
+	if ((new_file = fopen("decrease.txt", "w")) == NULL)
+	{
+		printf("Ошибка открытия файла");
+	}
+	else
+	{
+		while (!feof(transform))
+		{
+			fscanf(transform, "%lf", &read_mm);
+			if (read_mm > 100)
+			{
+				read = read_mm / 2.f;
+				fprintf(new_file, "%.2lf\n", read);
+			}
+			else
+			{
+				fprintf(new_file, "%.2lf\n", read_mm);
+			}
+		}
+		fclose(transform);
+		fclose(new_file);
+	}
+}
