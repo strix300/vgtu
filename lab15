@@ -1,0 +1,149 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <locale.h>
+#include <conio.h>
+#include <math.h>
+#include <Windows.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <ctype.h>
+#define ROW 3
+#define COL 5
+
+void zadan1() 
+{
+int *msv, size1 = 5, size2 = 3;
+printf("Введите размер массива (строк)> ");
+scanf("%d", &size1);
+printf("Введите размер массива (столбцов)> ");
+scanf("%d", &size2);
+msv = (int*)malloc((size1 * size2) * sizeof(int));
+for (int q = 0; q < (size1 * size2); q++) 
+{
+	msv[q] = q+1;
+}
+int c = 0;
+for (int q = 0; q < (size1 * size2); q++)
+{
+	int s = 0;
+	int strk = 0;
+	int stlb = q;
+	while (strk < size2) 
+	{
+		printf("msv[%i][%i] = %i ", q, strk, msv[stlb+c]);
+		stlb++;
+		strk++;
+	}	
+	printf("\n");
+	if (msv[stlb + c] == msv[size1*size2]) 
+	break;
+	s++;
+	c+= size2-1;
+}
+
+	int a[50][50]; int i, j, n, m; printf("Введите количество строк: ");
+	scanf("%d", &n);
+	printf("Введите количество столбцов: ");
+	scanf("%d", &m);
+	if (!(n < 50) || !(m < 50)) return;
+	for (i = 0; i < n; i++)
+		for (j = 0; j < m; j++)
+			a[i][j] = i + j;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			printf("a[%d][%d] = %d ", i, j, a[i][j]);
+		} printf("\n");
+	}
+	printf("элемент, расположенный в правом верхнем углу массива [0][%i] == %d \n", m - 1, a[0][m - 1]);
+	int stroka = 0;
+	printf("строка ");
+	scanf("%d", &stroka);
+
+	int minstr = a[stroka][0];
+	for (int i = 0; i < m; i++)
+	{
+		if (a[stroka][i] < minstr)
+			minstr = a[stroka][i];
+	}
+	printf("минимальный элемент массива в строке %i\n", minstr);
+}
+void zadan2() 
+{
+	srand(time(0));
+	int A_nt[7][7];
+	for (int q = 0; q < 6; q++) {
+		for (int i = 0; i < 6; i++) {
+			A_nt[q][i] = (rand() % 10 - 10);
+		}
+	}
+	printf("исходный массив \n");
+	for (int q = 0; q < 6; q++) {
+		for (int i = 0; i < 6; i++) {
+			printf("A[%i][%i] = %i ", q, i, A_nt[q][i]);
+		}puts("");
+	}
+	puts("\n");
+	int A_t[7][7];
+	printf("транспонированный массив \n");
+	for (int q = 0; q < 6; q++) {
+		for (int i = 0; i < 6; i++) {
+			A_t[q][i] = A_nt[i][q];
+		}
+	}
+	for (int q = 0; q < 6; q++) {
+		for (int i = 0; i < 6; i++) {
+			printf("A[%i][%i] = %i ", q, i, A_t[q][i]);
+		}puts("");
+	}	puts("\n");
+	int sumStlb2 = 0;
+	for (int q = 0; q < 6; q++) {
+		printf("A[%i][%i] = %i \n", q, 1, A_t[q][1]);
+		sumStlb2 += A_t[q][1];
+	}puts("");
+	printf("Сумма элементов второго столбца %i\n", sumStlb2);
+	int kolvo_odinakovih = 0;
+	int stroka = 0;
+	printf("строка ");
+	scanf("%d", &stroka);
+	for (int i = 0; i < 5; i++)
+	{
+		if (A_t[stroka][i] == A_t[stroka][i + 1])
+			kolvo_odinakovih++;
+	}
+	printf("odinakh %i\n", kolvo_odinakovih);
+	int maxel = A_t[0][0];
+	int x = 0, y = 0;
+	for (int q = 0; q < 6; q++)
+		for (int i = 0; i < 6; i++)
+		{
+			if (A_t[q][i] >= maxel) {
+				maxel = A_t[q][i]; x = q; y = i;
+			}
+		}
+	printf("maxel[%i][%i] = %i", x, y, maxel);
+}
+void zadan3() {
+	int cl[11][5];
+	for (int q = 0; q < 11; q++) {
+		for (int i = 0; i < 5; i++) {
+			cl[q][i] = (rand() % 30 + 10);
+		}
+	}
+	for (int q = 0; q < 11; q++) {
+		int obsh = 0;
+		for (int i = 0; i < 5; i++) {
+			printf("Класс %i, %i параллель = %i \n", q + 1, i + 1, cl[q][i]);
+			obsh += cl[q][i];
+		}printf("Общее число учеников в %i параллели = %i\n\n", q + 1, obsh);
+	}
+}
+void main()
+{
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	zadan1();
+	zadan2();
+	zadan3();
+}
