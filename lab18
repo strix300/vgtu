@@ -1,0 +1,114 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <math.h>
+#include <locale.h>
+
+struct point {
+	float x;
+	float y;
+	char name;
+};
+
+typedef struct point Point;
+
+void put_point(Point z) {
+	printf("point %c (%.1f, %.1f)\n", z.name, z.x, z.y);
+}
+
+float dist(Point z, Point w) {
+	return fabs(sqrt(pow((z.x - w.x), 2) + pow((w.y - z.y), 2)));
+}
+
+void chetv(Point z) {
+	if (z.x > 0 && z.y > 0) printf("Точка находится в I четверти\n");
+	if (z.x < 0 && z.y > 0) printf("Точка находится в II четверти\n");
+	if (z.x < 0 && z.y < 0) printf("Точка находится в III четверти\n");
+	if (z.x > 0 && z.y < 0) printf("Точка находится в IV четверти\n");
+}
+
+Point new_point(Point k, Point l) {
+	Point n;
+	n.x = (k.x + l.x) / 2;
+	n.y = (k.y + l.y) / 2;
+	n.name = 'M';
+	return n;
+}
+
+int main() {
+	setlocale(LC_ALL, "rus");
+	char ss;
+	Point b, a, c, m, k, l;
+	int mm, mx, my, kx, ky, lx, ly;
+	double j = 1;
+
+	printf("Точки плоскости\n");
+	while(j > 0)
+	{
+		printf("Выберите необходимое действие:\n");
+		printf("1 - Ввод точки M\n");
+		printf("2 - Вывод точки\n");
+		printf("3 - Найти расстояние между точками\n");
+		printf("4 - Серединная точка отрезка\n");
+		printf("5 - Четверть точки\n");
+		printf("6 - Выход из программы\n");
+		scanf("%d", &mm);
+
+		switch (mm)
+		{
+		case 1:
+			printf("Введите х:\n");
+			scanf("%d", &mx);
+			while (getchar() != '\n');
+			printf("Введите у:\n");
+			scanf("%d", &my);
+			m = (Point){ mx, my, 'M' };
+			break;
+		case 2:
+			put_point(m);
+			break;
+		case 3:
+			printf("Введите х первой точки:\n");
+			scanf("%d", &kx);
+			printf("Введите у первой точки:\n");
+			scanf("%d", &ky);
+			k = (Point){ kx, ky, 'K' };
+			printf("Введите х второй точки:\n");
+			scanf("%d", &lx);
+			printf("Введите у второй точки:\n");
+			scanf("%d", &ly);
+			l = (Point){ lx, ly, 'L' };
+			printf("%f\n", dist(k, l));
+			break;
+		case 4:
+			printf("Введите х первой точки:\n");
+			scanf("%d", &kx);
+			printf("Введите у первой точки:\n");
+			scanf("%d", &ky);
+			k = (Point){ kx, ky, 'K' };
+			printf("Введите х второй точки:\n");
+			scanf("%d", &lx);
+			printf("Введите у второй точки:\n");
+			scanf("%d", &ly);
+			l = (Point){ lx, ly, 'L' };
+			put_point(new_point(k, l));
+			break;
+		case 5:
+			printf("Введите х:\n");
+			scanf("%d", &mx);
+			while (getchar() != '\n');
+			printf("Введите у:\n");
+			scanf("%d", &my);
+			m = (Point){ mx, my, 'M' };
+			chetv(m);
+			break;
+		case 6:
+			j = -1;
+			printf("Программа завершена.");
+			break;
+		default:
+			printf("Введено неверное значение.");
+			break;
+		}
+	}
+}
